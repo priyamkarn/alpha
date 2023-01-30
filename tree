@@ -171,4 +171,25 @@ map<int,vector<int>>mp;
 }
 }
 return res;
-6.
+6.max path sum from any node
+int solve(Node *root,int &ans)
+    {
+        if(root==NULL)
+        {
+            return 0;
+        }
+        int lh=solve(root->left,ans);
+        lh=(lh<0)?0:lh;
+        int rh=solve(root->right,ans);
+        rh=(rh<0)?0:rh;
+        ans=max(ans,lh+rh+root->data);
+        return max(lh,rh)+root->data;
+    }
+    int findMaxSum(Node* root)
+    {
+        // Your code goes here
+        int ans=-1e9;
+        solve(root,ans);
+        return ans;
+        
+    }
