@@ -86,3 +86,27 @@ int solve2(Node *root,int target,int k,vector<int> &ans)
         return ans;
         
     }
+3.all root to leaf path
+void solve(Node *root,vector<int>ans,vector<vector<int>> &p)
+ {
+     if(root==NULL)
+     {
+         return;
+     }
+     ans.push_back(root->data);
+     if(!root->left && !root->right)
+     {
+         p.push_back(ans);
+     }
+     solve(root->left,ans,p);
+     solve(root->right,ans,p);
+     ans.pop_back();
+ }
+vector<vector<int>> Paths(Node* root)
+{
+    // Code here
+    vector<vector<int>>p;
+    vector<int>ans;
+    solve(root,ans,p);
+    return p;
+}
