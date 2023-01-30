@@ -143,3 +143,32 @@ vector<int> Solution::solve(TreeNode* A, int B) {
     bool a=solve2(A,B,ans);
     return ans;
 }
+5.vertical order
+map<int,vector<int>>mp;
+        queue<pair<int,Node*>>q;
+        q.push(make_pair(0,root));
+        while(!q.empty())
+        {
+                int line=q.front().first;
+            Node *temp=q.front().second;
+            mp[line].push_back(temp->data);
+            q.pop();
+            if(temp->left)
+            {
+               q.push(make_pair(line-1,temp->left)); 
+            }
+            if(temp->right)
+            {
+               q.push(make_pair(line+1,temp->right)); 
+            }
+        }
+        vector<int>res;
+        for(auto it:mp)
+{
+    for(auto i:it.second)
+    {
+    res.push_back(i);
+}
+}
+return res;
+6.
