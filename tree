@@ -110,3 +110,36 @@ vector<vector<int>> Paths(Node* root)
     solve(root,ans,p);
     return p;
 }
+4.node to root path
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+ void solve2(TreeNode *root,int target,vector<int>&ans)
+ {
+     if(root==NULL)
+     {
+         return false;
+     }
+     ans.push_back(root->val);
+     if(root->val==target)
+     {
+         return true;
+     }
+     if(solve2(root->left,target,ans) ||solve2(root->right,target,ans))
+     {
+         return true;
+     }
+     ans.pop_back();
+     return false;
+ }
+vector<int> Solution::solve(TreeNode* A, int B) {
+    vector<int>ans;
+    bool a=solve2(A,B,ans);
+    return ans;
+}
