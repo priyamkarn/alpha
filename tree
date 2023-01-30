@@ -193,3 +193,27 @@ int solve(Node *root,int &ans)
         return ans;
         
     }
+7.max path sum b/w 2 leaf nodes
+int solve(Node *root,int &res)
+    {
+       if (root==NULL) return 0;
+    if (!root->left && !root->right) return root->data;
+    int ls = solve(root->left, res);
+    int rs = solve(root->right, res);
+    if (root->left && root->right)
+    {
+        res = max(res, ls + rs + root->data);
+        return max(ls, rs) + root->data;
+    }
+    return (!root->left)? rs + root->data:
+                          ls + root->data;
+    }
+    int maxPathSum(Node* root)
+    {
+        // code here
+        int res = INT_MIN;
+    int val = solve(root, res);
+      if(root->left && root->right)
+            return res;
+        return max(res, val);
+    }
