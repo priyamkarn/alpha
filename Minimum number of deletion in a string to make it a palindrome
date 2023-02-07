@@ -1,0 +1,10 @@
+int minDeletion(string s, int i, int j)
+{
+    if (i >= j)
+        return 0;
+
+    if (s[i] == s[j])
+        return minDeletion(s, i + 1, j - 1);
+    else
+        return 1 + min(minDeletion(s, i + 1, j), minDeletion(s, i, j - 1));
+}
