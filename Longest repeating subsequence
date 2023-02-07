@@ -1,0 +1,14 @@
+int lrsRecursive(string s, int i, int j) {
+    if (i == s.length() || j == s.length())
+        return 0;
+
+    if (s[i] == s[j] && i != j)
+        return 1 + lrsRecursive(s, i + 1, j + 1);
+
+    return max(lrsRecursive(s, i, j + 1), lrsRecursive(s, i + 1, j));
+}
+		int LongestRepeatingSubsequence(string str){
+		    // Code here
+		    cout << lrsRecursive(str, 0, 0) << endl;
+		    
+		}
