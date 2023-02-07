@@ -16,3 +16,15 @@ int main() {
        << edit_distance(a, b, a.length(), b.length());
   return 0;
 }
+//replace
+int edit_distance(string a, string b, int m, int n) {
+  if (m == 0)
+    return n;
+  if (n == 0)
+    return m;
+  if (a[m - 1] == b[n - 1])
+    return edit_distance(a, b, m - 1, n - 1);
+  return 1 + min(edit_distance(a, b, m, n - 1), 
+                 min(edit_distance(a, b, m - 1, n), 
+                     edit_distance(a, b, m - 1, n - 1)));
+}
