@@ -1,0 +1,19 @@
+string scs(string s1, string s2, int i, int j) {
+  if (i == s1.length()) return s2.substr(j);
+  if (j == s2.length()) return s1.substr(i);
+
+  if (s1[i] == s2[j]) {
+    return s1[i] + scs(s1, s2, i + 1, j + 1);
+  }
+  string scs1 = scs(s1, s2, i + 1, j);
+  string scs2 = scs(s1, s2, i, j + 1);
+  if (scs1.length() < scs2.length()) {
+    return s1[i] + scs1;
+  }
+  return s2[j] + scs2;
+}
+string shortestSupersequence(string a, string b)
+{
+	// Write your code here.
+	return scs(a,b,0,0);
+}
