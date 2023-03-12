@@ -1,0 +1,24 @@
+int solve(vector<int>&cost,int i,int n,vector<int>&dp)
+{
+    if(i>=n)
+    {
+        return 0;
+    }
+    if(dp[i]!=-1)
+    {
+        return dp[i];
+    }
+    int op1=solve(cost,i+2,n,dp);
+    int op2=solve(cost,i+1,n,dp);
+    dp[i]=min(op1,op2)+cost[i];
+    return dp[i];
+}
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n=cost.size();
+        vector<int>dp(n+1,-1);
+        int ans1=solve(cost,0,n,dp);
+        vector<int>dp2(n+1,-1);
+        int ans2=solve(cost,1,n,dp2);
+        return min(ans1,ans2);
+    }
+};
